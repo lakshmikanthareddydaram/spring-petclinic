@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        echo 'echo \'Testing it!!!\''
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'echo \'Testing it!!!\''
+          }
+        }
+
+        stage('API_test') {
+          steps {
+            echo 'echo \'API Testing!!!\''
+          }
+        }
+
       }
     }
 
